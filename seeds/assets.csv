@@ -1,0 +1,8 @@
+ticker,asset_name,sector,asset_type,annual_return,volatility
+AAPL,Apple Inc.,Technology,Stock,0.12,0.22
+MSFT,Microsoft Corporation,Technology,Stock,0.10,0.20
+NVDA,NVIDIA Corporation,Technology,Stock,0.18,0.35
+TSLA,Tesla Inc.,Consumer Discretionary,Stock,0.15,0.40
+AMZN,Amazon.com Inc.,Consumer Discretionary,Stock,0.11,0.28
+VTI,Vanguard Total Stock Market ETF,Diversified,ETF,0.08,0.15
+BND,Vanguard Total Bond Market ETF,Fixed Income,ETF,0.04,0.05
