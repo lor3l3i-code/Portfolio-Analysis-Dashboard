@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_portfolio_holdings
+    description: "Staging model that cleans portfolio holdings data from the seed file."
+    columns:
+      - name: portfolio_id
+        description: "Unique identifier for each portfolio."
+      - name: ticker
+        description: "Stock or ETF ticker symbol."
+      - name: weight
+        description: "Portfolio allocation weight for each ticker."
+
+  - name: stg_assets
+    description: "Staging model that cleans asset-level descriptive and risk information."
+    columns:
+      - name: ticker
+        description: "Stock or ETF ticker symbol."
+      - name: asset_name
+        description: "Full asset name."
+      - name: sector
+        description: "Sector or asset category."
+      - name: annual_return
+        description: "Estimated annual return used for portfolio-level analysis."
+      - name: volatility
+        description: "Estimated volatility used as a risk proxy."
+
+  - name: dim_assets
+    description: "Dimension table containing descriptive information for each asset."
+    columns:
+      - name: ticker
+        description: "Primary key for each asset."
+      - name: asset_name
+        description: "Full asset name."
+      - name: sector
+        description: "Sector classification."
+      - name: asset_type
+        description: "Asset type such as Stock or ETF."
+
+  - name: fct_portfolio_risk
+    description: "Fact table that summarizes portfolio-level risk, return, and concentration metrics."
+    columns:
+      - name: portfolio_id
+        description: "Primary key for each portfolio."
+        data_tests:
+          - not_null
+          - unique
+      - name: ticker_count
+        description: "Number of distinct tickers in the portfolio."
+      - name: total_weight
+        description: "Total allocation weight across all tickers in the portfolio."
+      - name: max_single_weight
+        description: "Largest single ticker weight in the portfolio."
+      - name: weighted_expected_return
+        description: "Portfolio-level expected return calculated from ticker weights and asset return assumptions."
+      - name: weighted_volatility_proxy
+        description: "Portfolio-level risk proxy calculated from ticker weights and asset volatility assumptions."
+      - name: concentration_level
+        description: "Risk category based on maximum single ticker weight and ticker count."
