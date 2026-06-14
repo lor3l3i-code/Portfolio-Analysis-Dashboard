@@ -1,0 +1,16 @@
+name: "portfolio_analysis_dashboard"
+version: "1.0.0"
+config-version: 2
+
+profile: "portfolio_analysis_dashboard"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+models:
+  portfolio_analysis_dashboard:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
